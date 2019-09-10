@@ -1,0 +1,65 @@
+B-Tree Documentation
+CS 564 Spring 2019
+Group 9: Jason Arora, James Spitz, Xander Russow
+
+Design Documentation:
+
+TestCase Design:
+Test 4: Tests reading an older index file
+Test 5: Tests splitting a non leaf node using a small page size.
+Test 6: Tests a bad index file
+Test 7: Deletes entries until a leaf merge	
+
+
+Insertion Design Notes: 
+	A bottom-up design was chosen for implimentation; Below is documentation for specific finction design:
+
+findLeafNode:
+	When given both the page number and key, it finds where the key should be inserted. The function
+works recursively if only a page is given.
+
+insertLeafNode:
+	Inserts Key-Rid pair into a leaf node. this function invokes splitLeafNode if it needs for insertion.
+
+findLeafNode:
+	When receiving the number and Key, it finds the corelated node. If a non-leaf
+it invokes recurisivly.
+
+findParentOf: 
+	Given page number and the final page key, it finds the parent page, that has a same page number as a pointer. Fields
+are not update when split and it does not flush the buffer used.
+
+insertNonLeafNode:
+	designed to be invoke by other functions because non-leaf nodes are primarly the result of splitting. It is similar to our leaf insert function.
+
+splitLeafNode/splitNonLeafNode:
+	During called by their corresponding insert method. They will find and split nodes that qualify. LeafNode will first try to split
+and if it cannot, will make a nonleaf page. If nonLeaf cannot pivot and split the node, it will create a new page and reinvoke itself to insert.
+
+compare:
+	Uses generic copyKey to compare the different data types that can be present.
+
+keyCopy:
+	Copy the content from src pointer and dest pointer. 
+
+shiftToNextEntry:
+	Operationally an iterator for the leaves and entries. It addionally checks for endscan and if it is on the last key on the current page.
+
+Deletion Design:
+	Deletion process is similar to the reverse of insertion, with an emphasis on splitting.
+
+DeleteEntry:
+	Checks the key and calls the needed deletion function. It is invoked by testcases.
+
+DeleteLeafNode:
+	Deletes an entry from a input leaf node. Deletes key and rid if found and adjusts tree if needed.
+
+mergeLeafNode:
+	Merges two succisive leaf nodes, and appends data.
+
+mergeNonLeafNode:
+	Merges non-leaf nodes, can cut down tree height.
+
+
+	
+	

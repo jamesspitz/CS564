@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.css">
+<link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+
+<style>
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  </style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">AuctionBase</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="search">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="currtime">Current Time</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="selecttime">Change the Time</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="search">Search Database</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="add_bid">Place a Bid</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<body>
+  {# specify content block so that other templates can use this template as a base #}
+  <div class="panel panel-default">
+  <div class="panel-body" style="padding:0 10% 20px 10%">
+  <div id="content">{% block content %}{% endblock %}</div>
+  </div></div>
+</body>
+</html>

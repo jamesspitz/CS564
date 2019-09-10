@@ -1,0 +1,56 @@
+{% extends "app_base.html" %}
+{% block content %}
+{# include the first two lines above to extend the app_base template #}
+<h2 style="background-color:white">Auction Status: <small class="text-muted">{{ Status }}</small></h2> 
+  <div style="background-color:darkorchid">
+  	<h3 style="background-color:darkorchid">Auction ID #{{ id }}: {{ Name }}</h3>
+  		<h4 style="background-color:darkorchid">
+        <b>Seller:</b> {{ Seller }}
+      </h4>
+  </div>
+  <div style="background-color:WhiteSmoke">
+    <p>
+      <br><b>Started: </b>{{Started}}
+      <br><b>Ends: </b>{{Ends}} <br><br>
+  	 <b>Description:</b> {{Description}} <br><br>
+      <b>Categories:</b> {{Category}} <br><br>
+    </p>
+  </div>
+<h2 style="background-color:darkorchid">Bids</h2> 
+<div style="background-color:WhiteSmoke">
+  <p>
+    {% if ended %}
+      {% if noBids %}
+        <b>Ending Bid Price: </b> ${{ Currently }}<br>
+      {% else %}
+        <b>Winner:</b> {{ Winner }}<br>
+        <b>Winning Bid: </b> ${{ Currently }}<br>
+      {% endif %}
+    {% elif noBids %}
+      <b>Starting Bid Price: </b> ${{ Currently }}<br>
+    {% else %}
+      <b>Currently Winning:</b> {{ Winner }}<br>
+      <b>Highest Bid: </b> ${{ Currently }}<br>
+    {% endif %}
+    {% if hasBuyPrice %}
+      <b>Buy Now For: </b> ${{ buyPrice }}<br>
+    {% endif %}
+    <b>Number of Bids:</b> {{ Number_of_Bids }}
+  </p>
+<ul>
+  {% if bids %}
+  {% for result in bids %}
+    {% for key in result %}
+      <div>
+        <span>{{ key|e }}</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span>{{ result[key]|e }}</span>
+    </div>
+    {% endfor %}
+    <div>---------------------------------------------------------------------------------------------------------------------------------------------</div>
+{% endfor %}
+{% else %}
+{% endif %}
+</ul>
+{# also make sure to include this very last line as well #}
+{% endblock %}
